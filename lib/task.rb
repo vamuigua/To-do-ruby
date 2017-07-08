@@ -7,22 +7,22 @@ class Task
       @description = description
     end
     
-    #description method
+    #instance method to give description of a task
     define_method(:description) do
       @description
     end
     
-    #To create a class method to check if array is empty
+    #class method to give all tasks
     define_singleton_method(:all) do
       @@all_tasks
     end
     
-    #method to save task
+    #instance method to save a new task
     define_method(:save) do
       @@all_tasks.push(self)
     end
     
-    #method to clear tasks from array
+    #class method to clear tasks from array
     define_singleton_method(:clear) do
       @@all_tasks = []
     end
