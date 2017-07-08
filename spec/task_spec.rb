@@ -1,11 +1,13 @@
 require('rspec')
   require('task')
 
+  #To clear things out before each spec run
   describe(Task) do
       before() do
       Task.clear()
     end
-      
+    
+    #Test to give description
     describe("#description") do
       it("lets you give it a description") do
         test_task = Task.new("scrub the zebra")
@@ -13,13 +15,14 @@ require('rspec')
       end
     end
       
+    #Test method for giving all tasks when empty
     describe(".all") do
         it("is empty at first") do
             expect(Task.all()).to(eq([]))
         end
     end
       
-    #save method that adds a task to the array
+    #save method that adds a new task
     describe("#save") do
     it("adds a task to the array of saved tasks") do
       test_task = Task.new("wash the lion")
@@ -28,7 +31,7 @@ require('rspec')
     end
   end
 
-    #clear method to remove tasks from the array
+    #Test to remove tasks
     describe(".clear") do
     it("empties out all of the saved tasks") do
       Task.new("wash the lion").save()
