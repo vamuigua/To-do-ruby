@@ -1,20 +1,10 @@
-<h1>To Do</h1>
+<h1 class="text-left">To Do App</h1>
+<p><a href="/task/new" >Create a new task</a></p>
 
-  <p>Here are all your tasks:</p>
-
+<h2>Your Tasks:</h2>
 <!--Display all tasks here-->
   <ul>
     <% @tasks.each() do |task| %>
       <li><%= task.description() %></li>
     <% end %>
   </ul>
-
-<!--Form to write new task-->
-  <p>Create a new task:</p>
-
-  <form action="/tasks" method="post">
-    <label for="description">Task Description</label>
-    <input id="description" name="description" type="text">
-
-    <button type="submit">Add task</button>
-  </form>
