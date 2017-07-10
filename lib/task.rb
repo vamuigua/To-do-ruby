@@ -1,20 +1,29 @@
 class Task
+    #attribute reader
+    attr_reader(:description)
+    
     #a global array to store all tasks created
     @@all_tasks = []
     
     #To create an initialize method
-    define_method(:initialize) do |description|
-      @description = description
-    end
-    
-    #instance method to give description of a task
-    define_method(:description) do
-      @description
+    define_method(:initialize) do |attributes|
+      @description = attributes.fetch(:description)
     end
     
     #class method to give all tasks
     define_singleton_method(:all) do
-      @@all_tasks
+    #selecting all of the tasks from the tasks table in our database
+      returned_tasks = DB.exec("SELECT * FROM tasks;")
+    #empty array to store tasks
+      tasks = []
+    #loop through each of those tasks
+      returned_tasks.each() do |task|
+        #pull out the description
+        description = task.fetch("description")
+          # create a new Task object and push it into our tasks array
+        tasks.push(Task.new({:description => description}))
+      end
+      tasks
     end
     
     #instance method to save a new task
