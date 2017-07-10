@@ -34,7 +34,7 @@ DB = PG.connect({:dbname => 'to_do_test'})
     #save method that adds a new task
     describe("#save") do
     it("adds a task to the array of saved tasks") do
-      test_task = Task.new("wash the lion")
+      test_task = Task.new({:description => description})
       test_task.save()
       expect(Task.all()).to(eq([test_task]))
     end
