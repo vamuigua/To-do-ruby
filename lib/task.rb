@@ -28,7 +28,7 @@ class Task
     
     #instance method to save a new task
     define_method(:save) do
-      @@all_tasks.push(self)
+      DB.exec("INSERT INTO tasks (description) VALUES ('#{@description}');")
     end
     
     #class method to clear tasks from array
