@@ -48,4 +48,13 @@ DB = PG.connect({:dbname => 'to_do_test'})
       expect(Task.all()).to(eq([]))
     end
   end
+
+    #to make two objectswith the same properties are treated the same in our specs
+    describe("#==") do
+      it("is the same task if it has the same description") do
+        task1 = Task.new({:description => "learn SQL"})
+        task2 = Task.new({:description => "learn SQL"})
+        expect(task1).to(eq(task2))
+      end
+    end
 end
