@@ -26,4 +26,9 @@ class Task
     define_singleton_method(:clear) do
       @@all_tasks = []
     end
+    
+    #making two objects with same description be treated as the same
+    define_method(:==) do |another_task|
+      self.description().==(another_task.description())
+    end
 end
