@@ -40,7 +40,7 @@ DB = PG.connect({:dbname => 'to_do_test'})
     end
   end
     
-    #mathod to allow you to read the list ID out
+    #method to allow you to read the list ID out
     describe("#list_id") do
       it("lets you read the list ID out") do
         test_task = Task.new({:description => "learn SQL", :list_id => 1})
