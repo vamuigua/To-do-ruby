@@ -2,9 +2,6 @@ class Task
     #attribute reader
     attr_reader(:description, :list_id)
     
-    #a global array to store all tasks created
-#    @@all_tasks = []
-    
     #To create an initialize method
     define_method(:initialize) do |attributes|
       @description = attributes.fetch(:description)

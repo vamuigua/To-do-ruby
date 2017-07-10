@@ -1,14 +1,5 @@
-require('rspec')
-  require('pg')
-  require('list')
-
-  DB = PG.connect({:dbname => 'to_do_test'})
-
-  RSpec.configure do |config|
-    config.after(:each) do
-      DB.exec("DELETE FROM lists *;")
-    end
-  end
+#all files required from spec_helper.rb
+require("spec_helper")
 
   describe(List) do
     describe(".all") do
