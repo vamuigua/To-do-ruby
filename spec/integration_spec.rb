@@ -3,6 +3,7 @@ require('capybara/rspec')
   Capybara.app = Sinatra::Application
   set(:show_exceptions, false)
 
+  #Intergration test to add a new list
   describe('adding a new list', {:type => :feature}) do
     it('allows a user to click a list to see the tasks and details for it') do
       visit('/')
@@ -10,5 +11,16 @@ require('capybara/rspec')
       fill_in('name', :with =>'Moringaschool Work')
       click_button('Add List')
       expect(page).to have_content('Success!')
+    end
+  end
+
+  #intergration test to show all the lists 
+  describe('viewing all of the lists', {:type => :feature}) do
+    it('allows a user to see all of the lists that have been created') do
+      list = List.new({:name => 'Moringaschool Homework'})
+      list.save()
+      visit('/')
+      click_link('View All Lists')
+      expect(page).to have_content(list.name)
     end
   end
