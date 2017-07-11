@@ -17,18 +17,6 @@ require("pg")
     erb(:new_task)
   end
   
- #Handling a post request because we are editing something
-  post("/tasks") do
-    #variable to hold the task description
-    description = params.fetch("description")
-    #creating a new task
-    task = Task.new(description)
-    #calling save method to save new task instance to the all_tasks array
-    task.save()
-    #Transition to success route/page
-    erb(:success)
-  end
-
 #route to new list form
   get("/lists/new") do
     erb(:list_form)
@@ -52,4 +40,14 @@ require("pg")
   get("/lists/:id") do
     @list = List.find(params.fetch("id").to_i())
     erb(:list)
+  end
+
+#post request to post description and id for a new task created
+  post("/tasks") do
+    description = params.fetch("description")
+    list_id = params.fetch("list_id").to_i()
+    @list = List.find(list_id)
+    @task = Task.new({:description => description, :list_id => list_id})
+    @task.save()
+    erb(:success)
   end
