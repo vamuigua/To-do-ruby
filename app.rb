@@ -5,8 +5,8 @@ require("./lib/task")
 require('./lib/list')
 require("pg")
 
-DB = PG.connect({:dbname => "to_do"})
-
+# DB = PG.connect({:dbname => "to_do"})
+# DB = PG.connect({:dbname => "to_do_test"})
   get("/") do
     #an instance variable to hold our list of tasks returned from the class method Task.all()
     @tasks = Task.all()
@@ -46,4 +46,10 @@ DB = PG.connect({:dbname => "to_do"})
    get('/lists') do
     @lists = List.all()
     erb(:lists)
+  end
+
+#get request to view specific list
+  get("/lists/:id") do
+    @list = List.find(params.fetch("id").to_i())
+    erb(:list)
   end
