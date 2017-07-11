@@ -1,10 +1,6 @@
-<h1 class="text-left">To Do App</h1>
-<p><a href="/task/new" >Create a new task</a></p>
+<h1>Welcome to the To Do App</h1>
 
-<h2>Your Tasks:</h2>
-<!--Display all tasks here-->
-  <ul>
-    <% @tasks.each() do |task| %>
-      <li><%= task.description() %></li>
-    <% end %>
-  </ul>
+  <div class="container">
+    <a href="/lists">View All Lists</a>
+    <a href="/lists/new">Add New List</a>
+  </div>
