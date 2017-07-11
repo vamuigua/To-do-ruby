@@ -41,3 +41,9 @@ DB = PG.connect({:dbname => "to_do"})
     list.save()
     erb(:list_success)
    end
+
+#get request to show all the lists
+   get('/lists') do
+    @lists = List.all()
+    erb(:lists)
+  end
