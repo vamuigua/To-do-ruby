@@ -79,5 +79,15 @@ require("spec_helper")
         list.delete()
         expect(List.all()).to(eq([list2]))
       end
+      it("deletes a list's tasks from the database") do
+        list = List.new({:name => "Moringa School stuff", :id => nil})
+        list.save()
+        task = Task.new({:description => "learn SQL", :list_id => list.id()})
+        task.save()
+        task2 = Task.new({:description => "Review Ruby", :list_id => list.id()})
+        task2.save()
+        list.delete()
+        expect(Task.all()).to(eq([]))
+      end
     end
   end
