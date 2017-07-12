@@ -6,11 +6,10 @@ require('./lib/list')
 require("pg")
 
 DB = PG.connect({:dbname => "to_do"})
-# DB = PG.connect({:dbname => "to_do_test"})
 
   get("/") do
     #an instance variable to hold our list of tasks returned from the class method Task.all()
-    @tasks = Task.all()
+    @lists = List.all()
     erb(:index)
   end
 
@@ -59,4 +58,12 @@ DB = PG.connect({:dbname => "to_do"})
   get("/lists/:id/edit") do
     @list = List.find(params.fetch("id").to_i())
     erb(:list_edit)
+  end
+
+#to edit/patch a particular list
+  patch("/lists/:id") do
+    name = params.fetch("name")
+    @list = List.find(params.fetch("id").to_i())
+    @list.update({:name => name})
+    erb(:list)
   end
