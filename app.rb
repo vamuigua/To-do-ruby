@@ -7,6 +7,7 @@ require("pg")
 
 DB = PG.connect({:dbname => "to_do"})
 # DB = PG.connect({:dbname => "to_do_test"})
+
   get("/") do
     #an instance variable to hold our list of tasks returned from the class method Task.all()
     @tasks = Task.all()
@@ -27,7 +28,8 @@ DB = PG.connect({:dbname => "to_do"})
     name = params.fetch("name")
     list = List.new({:name => name, :id => nil})
     list.save()
-    erb(:success)
+    @lists = List.all()
+    erb(:index)
    end
 
 #get request to show all the lists
@@ -49,5 +51,6 @@ DB = PG.connect({:dbname => "to_do"})
     @list = List.find(list_id)
     @task = Task.new({:description => description, :list_id => list_id})
     @task.save()
-    erb(:success)
+    @list = List.find(list_id)
+    erb(:list)
   end
