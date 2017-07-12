@@ -54,3 +54,9 @@ DB = PG.connect({:dbname => "to_do"})
     @list = List.find(list_id)
     erb(:list)
   end
+
+#route to edit a particular list
+  get("/lists/:id/edit") do
+    @list = List.find(params.fetch("id").to_i())
+    erb(:list_edit)
+  end
