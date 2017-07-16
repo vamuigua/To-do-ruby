@@ -33,6 +33,7 @@ describe('seeing details for a single list', {:type => :feature}) do
     test_list.save()
     test_task = Task.new({:description => "learn SQL", :id =>nil})
     test_task.save()
+    test_list.add_task(test_task.id())
     visit('/lists')
     click_link(test_list.name())
     expect(page).to have_content(test_task.description())
