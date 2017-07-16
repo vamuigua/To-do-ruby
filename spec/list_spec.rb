@@ -89,6 +89,8 @@ describe(List) do
       task.save()
       task2 = Task.new({:description => "Review Ruby", :id => nil})
       task2.save()
+      list.add_task(task.id())
+      list.add_task(task2.id())
       list.delete()
       expect(Task.all()).to(eq([]))
     end
